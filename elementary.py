@@ -6,17 +6,6 @@ class Particle(object):
     position = (0.0, 0.0, 0.0)
     momentum = (0.0,0.0,0.0)
     
-'''
-    def __init__(self):
-        self.momentum =(px, py, pz)
-
-    def __init__(self):
-        self.position =(x, y, z)
-
-
-    def __init__(self):
-        self.mass =
-'''
 
     def __init__(self, x, y, z):
         self.momentum = (0.0,0.0,0.0)
@@ -24,10 +13,8 @@ class Particle(object):
         self.position = (x,y,z)
         
     def impulse(self,px,py,pz):
-        momentum[0] = momentum[0] + px
-        momentum[1] = momentum[1] + px
-        momentum[2] = momentum[2] + px
-        
+        self.momentum = (self.momentum[0]+px,self.momentum[1]+py,self.momentum[2]+pz)
+
     def move(self, dt):
         #p = mv
         #v = d/t
@@ -35,27 +22,25 @@ class Particle(object):
         #p = (d*m)/t
         #p*t = d*m
         #(p*t)/m = d
-        position[0] = position[0] + (momentum[0]*dt)/mass
-        position[1] = position[1] + (momentum[1]*dt)/mass
-        position[2] = position[2] + (momentum[2]*dt)/mass
+        self.position = ((self.position[0] + (self.momentum[0]*dt)/self.mass),(self.position[1] + (self.momentum[1]*dt)/self.mass),(self.position[2] + (self.momentum[2]*dt)/self.mass))
 
-def ChargedParticle(Particle):
+class ChargedParticle(Particle):
     
     charge = 0
         
-def Electron(ChargedParticle):
+class Electron(ChargedParticle):
     
     def __init__(self, x,y,z):
         super(Electron,self).__init__(x,y,z)
-        self.charge = sp.e*(-1)
-        self.mass = sp.electron_mass
+        self.charge = sp.constants.e*(-1)
+        self.mass = sp.constants.electron_mass
         
-def Proton(ChargedParticle):
+class Proton(ChargedParticle):
     
     def __init__(self, x,y,z):
         super(Proton,self).__init__(x,y,z)
-        self.charge = sp.e
-        self.mass = sp.proton_mass
+        self.charge = sp.constants.e
+        self.mass = sp.constants.proton_mass
         
         
         
