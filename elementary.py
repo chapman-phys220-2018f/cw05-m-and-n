@@ -41,23 +41,20 @@ class Particle(object):
 
 def ChargedParticle(Particle):
     
-    charge = "neutral"
-    
-    def __init__(self, x,y,z):
-        self.momentum = (0.0,0.0,0.0)
-        self.mass = 1.0
-        self.position = (x,y,z)
+    charge = 0
         
 def Electron(ChargedParticle):
     
-    def __init__(self):
-        self.charge = "Negative"
+    def __init__(self, x,y,z):
+        super(Electron,self).__init__(x,y,z)
+        self.charge = sp.e*(-1)
         self.mass = sp.electron_mass
         
 def Proton(ChargedParticle):
     
-    def __init__(self):
-        self.charge = "Positive"
+    def __init__(self, x,y,z):
+        super(Proton,self).__init__(x,y,z)
+        self.charge = sp.e
         self.mass = sp.proton_mass
         
         
